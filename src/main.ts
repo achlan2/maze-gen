@@ -2,8 +2,10 @@ import "./style.css";
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 
+let requestId: number;
+
 const width = 50;
-const height = 30;
+const height = 50;
 const tileWidth = 8;
 
 const maze = new Map(); // N, E, S, W, Visited
@@ -32,7 +34,10 @@ const mazeDraw = () => {
   const currentPosition = historyMaze[historyMaze.length - 1];
   const x = currentPosition[0];
   const y = currentPosition[1];
-  if (maze.size == width * height) return;
+  if (maze.size == width * height) {
+    cancelAnimationFrame(requestId);
+    return;
+  }
 
   let neighbours = [];
   // check neighbour;
@@ -178,7 +183,7 @@ const drawTiles = () => {
 
 const render = () => {
   drawTiles();
-  requestAnimationFrame(render);
+  requestId = requestAnimationFrame(render);
 };
 
 render();
