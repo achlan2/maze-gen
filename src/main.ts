@@ -5,7 +5,7 @@ const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 let requestId: number;
 
 const width = 50;
-const height = 50;
+const height = 30;
 const tileWidth = 8;
 
 const maze = new Map(); // N, E, S, W, Visited
